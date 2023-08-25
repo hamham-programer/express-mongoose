@@ -1,16 +1,11 @@
 const mongoose = require("mongoose")
 const TeamSchema = new message.Schema({
-    first_name:{type:String},
-    last_name:{type:String},
-    username: {type:String, required:true, unique:true},
-    mobile: {type:String, required:true, unique:true},
-    roles: {type:String, default:["USER"]},
-    email: {type:String, required:true, unique:true},
-    password: {type:String, required:true},
-    skills: {type:String, default:[]},
-    team: {type:String, default:[]}
+    name:{type:String, required:true},
+    description:{type:String},
+    users: {type:[mongoose.Types.ObjectId], default: [] },
+    owner: {type:mongoose.Types.ObjectId, required:true},
 })
-const userModel = mongoose.model("user", userSchema)
+const TeamModel = mongoose.model("team", TeamSchema)
 module.exports ={
-    userModel
+    TeamModel
 }

@@ -1,3 +1,4 @@
+const {AllRouter} = require("./routes/router")
 module.exports = class Application {
     #express = require("express");
     #app = this.#express();
@@ -51,6 +52,7 @@ module.exports = class Application {
                 message : "this is a new Express application"
             })
         })
+        this.#app.use(AllRouter)
     }
 }   
 
