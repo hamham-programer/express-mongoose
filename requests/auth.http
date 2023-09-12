@@ -9,13 +9,20 @@ Content-Type: application/json
     "mobile" : "09100639686",
     "confirm_password" : "123456"
 }
+###register request
+Post http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username" : "mehrad1",
+    "password" : "123456"    
+}
 ###login request
 Post http://localhost:3000/auth/login
 Content-Type: application/json
 Authorization: Bearer {{$dotenv token}}
 
 {
-    "username" : "erfanyousefi",
+    "username" : "mehrad1",
     "password" : "123456"
 }
---
