@@ -4,7 +4,33 @@ Authorization: Bearer {{$dotenv token}}
 Content-Type: application/json
 
 {
-    "title": "modalaprojectvvvv",
-    "text": "new project in indeverosity in kvvvvermansh "
+    "title": "modalap6rojectvvvv",
+    "text": "new proje6ct in indeverosity in kvvvvermansh "
 
 }
+
+###get All project 
+GET  http://localhost:3000/project/list
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+###get project by Id
+get http://localhost:3000/project/65016fc1686cc8aa72ed89f1
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+###remove project  by Id
+delete http://localhost:3000/project/remove/65016fc1686cc8aa72ed89f1
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+
+###edit project  by Id
+post http://localhost:3000/project/edit/:id
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+
+
+
+
