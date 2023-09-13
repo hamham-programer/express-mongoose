@@ -1,0 +1,10 @@
+###create project 
+post http://localhost:3000/project/create
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+{
+    "title": "modalaprojectvvvv",
+    "text": "new project in indeverosity in kvvvvermansh "
+
+}
