@@ -15,7 +15,7 @@ Authorization: Bearer {{$dotenv token}}
 Content-Type: application/json
 
 ###get project by Id
-get http://localhost:3000/project/65016fc1686cc8aa72ed89f1
+get http://localhost:3000/project/650022d82cca1f9e622e7d19
 Authorization: Bearer {{$dotenv token}}
 Content-Type: application/json
 
@@ -26,9 +26,15 @@ Content-Type: application/json
 
 
 ###edit project  by Id
-post http://localhost:3000/project/edit/:id
+put http://localhost:3000/project/edit/650022d82cca1f9e622e7d19
 Authorization: Bearer {{$dotenv token}}
 Content-Type: application/json
+
+{
+    "title": "",
+    "text":"",
+    "tags": ["180", "2"]
+}
 
 
 

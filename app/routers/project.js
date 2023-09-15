@@ -12,7 +12,8 @@ router.post("/create",fileupload(),chechLogin,uploadFile,createProjectValidator(
 router.get("/list",chechLogin,expressValidatorMapper, ProjectController.getAllProject)
 router.get("/:id",chechLogin,mongoIdValidator(),expressValidatorMapper, ProjectController.getProjectById)
 router.delete("/remove/:id",chechLogin,mongoIdValidator(),expressValidatorMapper, ProjectController.removeProject)
-router.post("/edit/:id",chechLogin,mongoIdValidator(),expressValidatorMapper, ProjectController.updateProject)
+router.put("/edit/:id",chechLogin,mongoIdValidator(),expressValidatorMapper, ProjectController.updateProject)
+router.patch("/edit-projectImage/:id",fileupload(),chechLogin,uploadFile,mongoIdValidator(),expressValidatorMapper, ProjectController.updateProjectImage)
 
 
 module.exports ={
