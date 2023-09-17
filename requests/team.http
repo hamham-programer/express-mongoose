@@ -1,0 +1,60 @@
+###create project 
+post http://localhost:3000/team/create
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+{
+    "name": "hamhamham",
+    "description": "gkgkgjk",
+    "username": "hamid123dg"
+
+}
+
+###get All team 
+GET  http://localhost:3000/team/list
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+###get team by Id
+get http://localhost:3000/team/65052b9c2b79564c67a8aed7
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+###get myTeams
+get http://localhost:3000/team/me
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+###remove team  by Id
+delete http://localhost:3000/team/remove/65052b9c2b79564c67a8aed7
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+
+###edit team  by Id
+put http://localhost:3000/team/edit/650022d82cca1f9e622e7d19
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+{
+    "title": "",
+    "text":"",
+    "tags": ["180", "2"]
+}
+
+###invite user to team
+put http://localhost:3000/team/invite/
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+{
+    "title": "",
+    "text":"",
+    "tags": ["180", "2"]
+}
+
+
+
+
+
+
