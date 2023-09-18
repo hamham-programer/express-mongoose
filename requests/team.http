@@ -4,9 +4,9 @@ Authorization: Bearer {{$dotenv token}}
 Content-Type: application/json
 
 {
-    "name": "hamhamham",
+    "name": "1820569",
     "description": "gkgkgjk",
-    "username": "hamid123dg"
+    "username": "hamidrezash"
 
 }
 
@@ -43,7 +43,7 @@ Content-Type: application/json
 }
 
 ###invite user to team
-put http://localhost:3000/team/invite/
+get http://localhost:3000/team/invite/65082b1a7281673e75174102/hamidrezash
 Authorization: Bearer {{$dotenv token}}
 Content-Type: application/json
 

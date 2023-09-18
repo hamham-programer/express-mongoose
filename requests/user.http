@@ -12,3 +12,18 @@ Content-Type: application/json
     "last_name": "shafiei",
     "skills": ["php", "Nodejs3", "Expressjs3"]
 }
+###getAllRequest 
+get http://localhost:3000/user/requests
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+###getAllRequest 
+get http://localhost:3000/user/requests/pending
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+
+### accepted Request 
+get http://localhost:3000/user/change-status-request/65069485a42699c0aa23ce13/accepted
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
+

@@ -62,19 +62,86 @@ class UserController{
             
         }
     }
+   async getAllRequest(req,res,next){
+        try {
+            const userId = req.user._id
+            const {inviteRequests} = await userModel.findById(userId, {inviteRequests:1})
+            return res.json({
+                request:inviteRequests || []
+            })
+            
+        } catch (error) {
+            next(error)
+            
+        }
+    }
+    async getRequestsByStatus(req, res, next) {
+        try {
+          const { status } = req.params;
+          const userID = req.user._id;
+          const requests = await userModel.aggregate([
+            {
+              $match: { _id: userID },
+            },
+            {
+              $project: {
+                inviteRequests: 1,
+                _id: 0,
+                inviteRequests : {
+                    $filter : {
+                        input : "$inviteRequests",
+                        as : "request",
+                        cond : {
+                            $eq : ["$$request.status", status]
+                        }
+                    }
+                }
+              },
+            },
+          ]);
+          return res.status(200).json({
+            status: 200,
+            success: true,
+            requests : requests?.[0]?.inviteRequests || []
+          });
+        } catch (error) {
+          next(error);
+        }
+      }
+    
+      async changeStatusRequest(req,res,next){
+        try {
+            const {id,status} = req.params
+            const request = await userModel.findOne({"inviteRequests._id": id })
+            if(! request) throw {status:404, message:"درخواستی با این مشخصات وجود ندارد"}
+            const findRequest = request.inviteRequests.find(item =>item.id == id)
+            if(findRequest.status !== "pending") throw {status:400 , message:"این درخواست قبلا  رد یا پذیرفته شده است"}
+            if(!["accepted", "rejected"].includes(status)) throw {status:400 , message:"اطلاعات ارسالی صحیح نمی باشد"}
+            const updateResult = await userModel.updateOne({"inviteRequests._id" : id}, {$set: {
+                "inviteRequests.$.status": status
+            }})
+            if(updateResult.modifiedCount == 0 ) throw {status:500, message:"تغییر وضعیت درخواست انجام نشد"}
+            return res.status(200).json({
+                status:200,
+                success:true,
+                message:" تغییر وضعیت درخواست با موفقیت انجام شد"
+            })
+        } catch (error) {
+            next(error)
+            
+        }
+  
+      }
+      rejectInviteInTeam(){
+  
+      }
+      
     addSkills(){
 
     }
     editSkills(){
 
     }
-    acceptIviteInTeam(){
-
-    }
-    rejectInviteInTeam(){
-
-    }
-    
 }
 module.exports ={
     UserController: new UserController()

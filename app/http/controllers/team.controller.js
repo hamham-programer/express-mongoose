@@ -126,7 +126,7 @@ class TeamController{
               status: 400,
               message: "کاربر مورد نظر قبلا به تیم دعوت شده است",
             };
-          const request = {
+          const requests = {
             caller: req.user.username,
             requestDate: new Date(),
             teamID,

@@ -11,8 +11,9 @@ router.post("/profile", chechLogin, UserController.editProfile)
 router.post("/profile-image", chechLogin,upload_multer.single("image"),imageValidator(),
 expressValidatorMapper,
 UserController.uploadProfileImage)
-
-
+router.get("/requests",chechLogin,UserController.getAllRequest )
+router.get("/requests/:status", chechLogin, UserController.getRequestsByStatus)
+router.get("/change-status-request/:id/:status", chechLogin, UserController.changeStatusRequest)
 
 module.exports ={
     userRoutes : router
