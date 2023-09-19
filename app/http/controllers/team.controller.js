@@ -60,7 +60,7 @@ class TeamController{
         }
 
     }
-    async getMyTeam(req,res,next){
+  /*   async getMyTeam(req,res,next){
         try {
             const userId = req.user._id
             const teams = await TeamModel.find({
@@ -79,7 +79,45 @@ class TeamController{
             next(error)
             
         }
-    }
+    } */
+    async getMyTeam(req,res,next){
+      try {
+          const userId = req.user._id
+          const teams = await TeamModel.aggregate([
+            {
+              $match:{
+                $or :[{owner:userId},{users:userId}]
+            }
+            },
+            {
+              $lookup:{//با این دستور مشخصات کسی که ایجاد کنندس رو میده
+                from: "users", //کالکشن یا جدولی که یوزر در داخلش ذخیره هست
+                localField: "owner",
+                foreignField: "_id",
+                as: "owner" //با چه فیلدی ذخیره کنم
+              }
+            },
+            {
+              $project:{//برای نمایش یا عدم نمایش بعضی از موارد
+                "owner.username":1,
+                "owner.mobile":1
+              }
+            },
+            {
+              $unwind : "$owner" //اگر آرایه ای از آبجکت ها داشته باشیم فقط یک آبجکت داخلش باشد  میتونیم از حالت آبجکت خارج کنیم
+            }
+          ])
+          return res.status(200).json({
+              status:200,
+              success:true,
+              teams
+          })
+          
+      } catch (error) {
+          next(error)
+          
+      }
+  }
    async removeTeamById(req,res,next){
     try {
         const teamId = req.params.id
