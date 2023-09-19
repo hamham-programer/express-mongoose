@@ -53,7 +53,15 @@ Content-Type: application/json
     "tags": ["180", "2"]
 }
 
+###update  team  
+put http://localhost:3000/team/update/65082e2c7281673e75174146
+Authorization: Bearer {{$dotenv token}}
+Content-Type: application/json
 
+{
+    "name": "hamidreza group222",
+    "description":"enjoy program in team"
+}
 
 
 

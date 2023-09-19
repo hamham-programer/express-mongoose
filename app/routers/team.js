@@ -11,6 +11,7 @@ router.post("/create", chechLogin,createTeamValidator(),expressValidatorMapper,T
 router.get("/list", chechLogin,TeamController.getListOfTeam)
 router.get("/me", chechLogin,TeamController.getMyTeam)
 router.get("/invite/:teamID/:username", chechLogin,TeamController.inviteUserToTeam)
+router.put("/update/:teamID", chechLogin,TeamController.updateTeam)
 router.get("/:id", chechLogin,mongoIdValidator(),expressValidatorMapper,TeamController.getTeamById)
 router.delete("/remove/:id", chechLogin,mongoIdValidator(),expressValidatorMapper,TeamController.removeTeamById)
 
